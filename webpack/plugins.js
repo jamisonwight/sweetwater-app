@@ -2,7 +2,6 @@ const argv = require('minimist')(process.argv.slice(2));
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
@@ -24,7 +23,6 @@ const commonPlugins = [
   new HtmlWebpackPlugin({
     inject: 'body',
     template: path.resolve(__dirname, '../src/index.html'),
-    favicon: path.resolve(__dirname, '../src/assets/images/favicon.ico')
   }),
   new webpack.LoaderOptionsPlugin({
     minimize: isProduction,
@@ -115,22 +113,6 @@ const productionPLugins = [
       }
     }
   }),
-  new FaviconsWebpackPlugin({
-    title: `${pkg.name} - ${pkg.description}`,
-    logo: path.resolve(__dirname, '../src/assets/images/logo.png'),
-    prefix: 'assets/img/icons/',
-    statsFilename: 'iconstats-[hash].json',
-    icons: {
-      android: true,              // Create Android homescreen icon. `boolean`
-      appleIcon: true,            // Create Apple touch icons. `boolean` or `{ offset: offsetInPercentage }`
-      appleStartup: false,        // Create Apple startup images. `boolean`
-      coast: {offset: 25},      // Create Opera Coast icon with offset 25%. `boolean` or `{ offset: offsetInPercentage }`
-      favicons: true,             // Create regular favicons. `boolean`
-      firefox: true,              // Create Firefox OS icons. `boolean` or `{ offset: offsetInPercentage }`
-      windows: true,              // Create Windows 8 tile icons. `boolean`
-      yandex: true                // Create Yandex browser icon. `boolean`
-    }
-  })
 ];
 
 module.exports = {
