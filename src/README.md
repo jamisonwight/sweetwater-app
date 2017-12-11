@@ -1,3 +1,9 @@
+# Get Started
+
+yarn install
+yarn start
+Open browser and navigate to localhost:3000
+
 # Vue.js Shopping Cart Test Project
 
 Thanks for your interest in working at Sweetwater! We're always excited to meet awesome people. We've created this test to help us understand your programming chops.

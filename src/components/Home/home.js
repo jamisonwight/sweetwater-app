@@ -38,6 +38,8 @@ export default Vue.extend({
         return item.itemid === id
       });
       console.log(_cart);
+      var total = parseInt(_cart.price) * _cart.quantity;
+      this.$store.state.total += total;
       this.$store.state.items.push(_cart);
       this.$store.state.quantity += 1;
       console.log(this.$store.state.quantity);
