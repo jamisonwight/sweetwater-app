@@ -3,23 +3,31 @@ import Products from '!json-loader!../../dataset/items.json';
 
 export default Vue.extend({
   template: `
-  <div v-for="product in products" class="col-md-6">
-    <a :href="product.url" :alt="product.description" target="_blank">
-      <img :src="product.image"/>
-    </a>
-    <p><b>Name: {{product.productName}}</b></p>
-    <p><b>Description: {{product.description}}</b></p>
-    <p><b>Price: {{product.price}}</b></p>
-    <p><b>Manufacturer: {{product.manufacturer}}</b></p>
-    <p><b>Quantity: {{product.quantity}}</b></p>
-    <p><b>In Stock: {{product.available}}</b></p>
-    <button v:click="addToCart(product.itemid)">Add To Cart</button>
-  </div>`,
+    <div class="container-fluid">
+      <div class="row">
+      <h1>Products</h1>
+        <div class="col-md-12">
+          <div class="row">
+              <div class="product col-md-6" v-for="product in products">
+                <a :href="product.url" :alt="product.description" target="_blank">
+                  <img :src="product.image"/>
+                </a>
+                <p><b>Name:</b> {{product.productName}}</p>
+                <p><b>Description:</b> {{product.description}}</p>
+                <p class="text-danger"><b>Price: $<span>{{product.price}}</span></b></p>
+                <p><b>Manufacturer:</b> {{product.manufacturer}}</p>
+                <p><b>Quantity:</b> {{product.quantity}}</p>
+                <p><b>In Stock:</b> {{product.available}}</p>
+                <button class="btn btn-primary" v-on:click="addToCart(product.itemid)">Add To Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>`,
 
-  data() {
+  data: function() {
     return {
       products: Products,
-      state: this.$store.state,
       cartItems: [],
     }
   },
@@ -29,13 +37,13 @@ export default Vue.extend({
       let _cart = this.products.find(item => {
         return item.id === id
       });
-      this.state.shoppingCart.cart.push(_cart);
-      this.state.shoppingCart.quantity += 1;
+      this.$store.state.items.push(_cart);
+      this.$store.state.quantity += 1;
+      console.log(this.$store.state.quantity);
     }
   },
 
   created() {
-
   }
 
 });

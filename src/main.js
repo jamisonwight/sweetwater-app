@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import Vue from 'vue/dist/vue.js';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex'
 
@@ -12,24 +12,22 @@ Vue.use(Vuex);
 import routes from 'src/routes';
 import 'src/style.scss';
 
-const store = new Vuex.Store({
+export const store = new Vuex.Store({
   state: {
-    shoppingCart: {
-      quantity: 0,
-      items: [],
-      total: 0
-    }
+    quantity: 0,
+    items: [],
+    total: 0,
   }
 });
 
 export const router = new VueRouter({
   routes,
-  store,
   mode: 'history',
   linkActiveClass: 'active'
 });
 
 new Vue({
+  store,
   router,
   components: {
     Navigation,
@@ -37,7 +35,6 @@ new Vue({
 
   data(){
     return {
-      isLoading: false
     };
   },
 
