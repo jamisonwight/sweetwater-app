@@ -34,9 +34,10 @@ export default Vue.extend({
 
   methods: {
     addToCart(id) {
-      let _cart = this.products.find(item => {
-        return item.id === id
+      var _cart = this.products.find(item => {
+        return item.itemid === id
       });
+      console.log(_cart);
       this.$store.state.items.push(_cart);
       this.$store.state.quantity += 1;
       console.log(this.$store.state.quantity);
