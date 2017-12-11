@@ -33,3 +33,12 @@ body {
 img {
   padding-bottom: 2rem;
 }
+
+.pull-right {
+  float: right !important;
+  position: absolute;
+  top: 5px;
+  right: 2.5rem;
+  font-size: 1.5rem;
+}
+
